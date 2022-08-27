@@ -1,4 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+
+import 'constant.dart';
 
 const String _loremIpsumParagraph =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
@@ -32,51 +36,62 @@ const String _loremIpsumParagraph =
     'vitae';
 
 class DetailsPage extends StatelessWidget {
-  final int index;
-
-  const DetailsPage({
-    this.index = 0,
-  });
+  final int index = Random().nextInt(50);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text('Details page'),
-        ),
-        body: ListView(
-          children: <Widget>[
-            Container(
-              height: 300,
-              child: Image.network(
-                'https://source.unsplash.com/random?sig=$index',
-                fit: BoxFit.cover,
+  Widget build(BuildContext context) {
+    print("Hello This Is Detail Page");
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Details page'),
+      ),
+      body: ListView(
+        children: <Widget>[
+          Container(
+            height: 300,
+            child: Image.network(
+              'https://source.unsplash.com/random?sig=0',
+              fit: BoxFit.cover,
+            ),
+          ),
+          Container(
+            width: 50,
+            height: 50,
+            child: Hero(
+              tag: 'hero-rectangle',
+              child: Container(
+                color: Colors.black,
+                height: 50,
+                width: 50,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    'Random Image',
-                    style: Theme.of(context).textTheme.headline5!.copyWith(
-                          color: Colors.black54,
-                          fontSize: 30,
-                        ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'Random Image',
+                  style: Theme.of(context).textTheme.headline5!.copyWith(
+                        color: Colors.black54,
+                        fontSize: 30,
+                      ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  _loremIpsumParagraph,
+                  style: TextStyle(
+                    color: Colors.black54,
+                    height: 1.5,
+                    fontSize: 16,
                   ),
-                  SizedBox(height: 10),
-                  Text(
-                    _loremIpsumParagraph,
-                    style: TextStyle(
-                      color: Colors.black54,
-                      height: 1.5,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
+  }
 }
